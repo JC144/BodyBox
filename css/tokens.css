@@ -1,0 +1,88 @@
+/* Variables de design : couleurs, typographie, espacements (spécification, section 8). */
+
+/* Thème sombre : thème par défaut. */
+:root {
+  --bg: #000000;
+  --fg: #FFFFFF;
+  --fg-muted: #A6A6A6;
+  --line: #333333;
+  --surface: #141414;
+  --alert: #FF3B30;
+
+  --lvl-0: #1A1A1A;
+  --lvl-1: #4D4D4D;
+  --lvl-2: #808080;
+  --lvl-3: #BFBFBF;
+  --lvl-4: #FFFFFF;
+
+  color-scheme: dark;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-giant: clamp(6rem, 34vw, 11rem);
+  --fs-xl: 3rem;
+  --fs-l: 1.75rem;
+  --fs-m: 1.0625rem;
+  --fs-s: 0.75rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --gutter: 1.25rem;
+  --tap: 48px;
+  --tap-session: 64px;
+  --transition: 120ms;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+}
+
+/* Thème clair : inversion stricte. */
+:root[data-theme="light"] {
+  --bg: #FFFFFF;
+  --fg: #000000;
+  --fg-muted: #555555;
+  --line: #D0D0D0;
+  --surface: #F2F2F2;
+  --alert: #C4140A;
+
+  --lvl-0: #EBEBEB;
+  --lvl-1: #B3B3B3;
+  --lvl-2: #808080;
+  --lvl-3: #404040;
+  --lvl-4: #000000;
+
+  color-scheme: light;
+}
+
+/* Thème « système » : clair si l'appareil est en mode clair. */
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --bg: #FFFFFF;
+    --fg: #000000;
+    --fg-muted: #555555;
+    --line: #D0D0D0;
+    --surface: #F2F2F2;
+    --alert: #C4140A;
+
+    --lvl-0: #EBEBEB;
+    --lvl-1: #B3B3B3;
+    --lvl-2: #808080;
+    --lvl-3: #404040;
+    --lvl-4: #000000;
+
+    color-scheme: light;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 0ms;
+  }
+}

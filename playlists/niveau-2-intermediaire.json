@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "niveau-2-intermediaire",
+  "name": "Niveau 2 · Intermédiaire",
+  "description": "Circuit complet de niveau intermédiaire : pompes au sol, tirage jambes avancées, squat sur une jambe, dips, fentes, abdos et lombaires. Matériel : chaises, barre basse, table.",
+  "exercises": [
+    { "exerciseId": "pompes", "targetReps": 15 },
+    { "exerciseId": "tractions-horizontales-pieds-avances", "targetReps": 12 },
+    { "exerciseId": "squat-une-jambe-assiste-cuisse-parallele", "targetReps": 10, "note": "Par jambe." },
+    { "exerciseId": "dips-chaises-demi-amplitude", "targetReps": 10 },
+    { "exerciseId": "fente-laterale-alternee", "targetReps": 20, "note": "10 par côté." },
+    { "exerciseId": "extensions-triceps-table", "targetReps": 12 },
+    { "exerciseId": "releve-buste-rotation", "targetReps": 16, "note": "8 par côté." },
+    { "exerciseId": "extensions-lombaires-support", "targetReps": 12 }
+  ]
+}

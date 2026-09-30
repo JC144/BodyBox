@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "routine-maison",
+  "name": "Routine maison",
+  "description": "Cinq exercices à enchaîner en circuit, au poids du corps, à la kettlebell et au hand gripper.",
+  "exercises": [
+    { "exerciseId": "pompes", "targetReps": 15 },
+    { "exerciseId": "abdominaux", "targetReps": 20 },
+    { "exerciseId": "abdominaux-lateraux", "targetReps": 20 },
+    { "exerciseId": "kettlebell-swing", "targetReps": 15, "note": "Kettlebell de 12 kg" },
+    { "exerciseId": "hand-gripper", "targetReps": 30, "note": "Par main" }
+  ]
+}

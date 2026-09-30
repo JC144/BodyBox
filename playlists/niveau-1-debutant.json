@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "niveau-1-debutant",
+  "name": "Niveau 1 · Débutant",
+  "description": "Circuit complet pour débuter : poussée sur support, tirage sous une barre basse, squat assisté, triceps, abdos et dos. Matériel : chaises, une barre ou une table solide.",
+  "exercises": [
+    { "exerciseId": "pompes-mains-support-45cm", "targetReps": 12 },
+    { "exerciseId": "tractions-horizontales-jambes-repliees", "targetReps": 10 },
+    { "exerciseId": "squat-une-jambe-assiste-petite-flexion", "targetReps": 10, "note": "Par jambe. Mains sur les montants de la porte, pour l’équilibre seulement." },
+    { "exerciseId": "extensions-triceps-mur-chaise", "targetReps": 12, "note": "Niveau 1 face au mur ; passez à la chaise dès 15 répétitions." },
+    { "exerciseId": "releve-buste", "targetReps": 15, "note": "Aidez-vous des bras tendus vers l’avant." },
+    { "exerciseId": "inclinaisons-buste-bras-tendus", "targetReps": 15 },
+    { "exerciseId": "releves-lateraux-sol", "targetReps": 10, "note": "Par côté." }
+  ]
+}

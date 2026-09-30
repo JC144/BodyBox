@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "niveau-3-avance",
+  "name": "Niveau 3 · Avancé",
+  "description": "Circuit complet de niveau avancé : pompes pieds surélevés, tractions à la barre fixe, squat complet sur une jambe, dips, pompes piquées, pliométrie et pompes sur un bras.",
+  "exercises": [
+    { "exerciseId": "pompes-chaises-pieds-meuble", "targetReps": 15 },
+    { "exerciseId": "tractions-supination", "targetReps": 8, "note": "Barre fixe. Sans barre : tractions horizontales, pieds surélevés." },
+    { "exerciseId": "squat-une-jambe-assiste-flexion-complete", "targetReps": 8, "note": "Par jambe." },
+    { "exerciseId": "dips-chaises", "targetReps": 12 },
+    { "exerciseId": "pompes-piquees-chaises", "targetReps": 10 },
+    { "exerciseId": "releve-genoux-suspendu", "targetReps": 12 },
+    { "exerciseId": "sauts-verticaux-flexion", "targetReps": 20 },
+    { "exerciseId": "pompes-un-bras-chaise", "targetReps": 6, "note": "Par bras." },
+    { "exerciseId": "extensions-lombaires-support", "targetReps": 15 }
+  ]
+}
