@@ -57,6 +57,12 @@ button, input, select, textarea {
   outline-offset: 3px;
 }
 
+/* Les titres d'écran reçoivent le focus par script : contour affiché seulement en navigation au clavier. */
+:root:not([data-keyboard]) h1[tabindex="-1"]:focus-visible,
+:root:not([data-keyboard]) h2[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;

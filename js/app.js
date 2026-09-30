@@ -175,9 +175,26 @@ function registerServiceWorker() {
   });
 }
 
+// ---------- Mode de navigation ----------
+
+/**
+ * Marque la navigation au clavier (touche Tab) sur <html data-keyboard> ; un toucher ou un clic l'efface.
+ * Le contour de focus des titres d'écran n'est affiché qu'en navigation au clavier.
+ */
+function trackKeyboardNavigation() {
+  const root = document.documentElement;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') root.dataset.keyboard = '';
+  }, true);
+  document.addEventListener('pointerdown', () => {
+    delete root.dataset.keyboard;
+  }, true);
+}
+
 // ---------- Démarrage ----------
 
 async function boot() {
+  trackKeyboardNavigation();
   const settings = await loadSettings().catch(() => ({ theme: 'dark' }));
   applyTheme(settings.theme);
   updateBanner.querySelector('span').textContent = T.update.available;
