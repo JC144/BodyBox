@@ -1,7 +1,7 @@
 // Service worker : pré-cache de toute l'application, réponses depuis le cache en priorité.
 // Toute livraison incrémente CACHE_VERSION (et APP_VERSION dans js/version.js).
 
-const CACHE_VERSION = 21;
+const CACHE_VERSION = 22;
 const CACHE_NAME = `bodybox-v${CACHE_VERSION}`;
 
 const PRECACHE = [
