@@ -1,6 +1,6 @@
 {
   "name": "body-box",
-  "version": "1.5.0",
+  "version": "2.0.6",
   "private": true,
   "description": "PWA de musculation à la maison — sans build, sans dépendance.",
   "type": "module",

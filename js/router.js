@@ -4,6 +4,7 @@ const listeners = new Set();
 let routes = [];
 let fallback = '/playlists';
 let current = null;
+let previous = null;
 
 /**
  * @param {{pattern: RegExp, name: string}[]} table
@@ -23,6 +24,11 @@ export function onRoute(fn) {
 
 export function currentRoute() {
   return current;
+}
+
+/** Route affichée avant la route courante (null au lancement). */
+export function previousRoute() {
+  return previous;
 }
 
 /** Change d'écran. `replace` remplace l'entrée d'historique courante. */
@@ -47,6 +53,7 @@ function resolve() {
   for (const r of routes) {
     const m = p.match(r.pattern);
     if (m) {
+      previous = current;
       current = { name: r.name, params: m.slice(1).map((x) => (x === undefined ? undefined : decodeURIComponent(x))), path: p };
       for (const fn of listeners) fn(current);
       return;

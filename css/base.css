@@ -492,6 +492,8 @@ a.row:active .row-meta {
   align-items: baseline;
   gap: var(--space-5);
   height: calc(var(--fs-l) * 1.1 + 2 * var(--space-2));
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Étai invisible à la taille de l'onglet actif : il fixe la ligne de base,
@@ -522,7 +524,7 @@ a.row:active .row-meta {
   white-space: nowrap;
   cursor: pointer;
   touch-action: manipulation;
-  transition: color 0.15s, font-size 0.15s;
+  transition: color 0.15s, font-size 0.15s, font-weight 0.15s;
 }
 
 /* Zone d'appui de 48 px quelle que soit la taille du libellé. */
@@ -540,6 +542,23 @@ a.row:active .row-meta {
   color: var(--fg);
   font-size: var(--fs-l);
   font-weight: 800;
+}
+
+/* Pendant un glissé entre onglets, chaque en-tête suit le doigt : --grow va de 0
+   (onglet inactif) à 1 (onglet actif). Au lâcher, la transition termine le trajet. */
+.tabs--dragging .tab {
+  transition: none;
+  color: color-mix(in srgb, var(--fg) calc(var(--grow, 0) * 100%), var(--fg-muted));
+  font-size: calc(var(--fs-m) + (var(--fs-l) - var(--fs-m)) * var(--grow, 0));
+  font-weight: calc(300 + 500 * var(--grow, 0));
+}
+
+/* Écran à onglets : le navigateur ne gère que le défilement vertical (et le zoom),
+   le glissé horizontal change d'onglet. La page qui suit le doigt ne doit pas
+   déborder à droite et rendre l'écran défilable en largeur. */
+body[data-route="settings"] .main {
+  touch-action: pan-y pinch-zoom;
+  overflow-x: clip;
 }
 
 .tab:focus-visible {

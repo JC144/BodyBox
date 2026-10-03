@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "kettlebell-reprise-b-haut-du-corps",
+  "name": "Reprise B · Haut du corps",
+  "description": "À alterner avec la reprise A. Poussée, tirage et abdos : 3 tours, 25 à 35 min. Échauffez-vous 5 min et soufflez 1 à 2 min entre les tours.",
+  "exercises": [
+    { "exerciseId": "kettlebell-floor-press", "targetReps": 8, "note": "Par bras." },
+    { "exerciseId": "kettlebell-rowing", "targetReps": 10, "note": "Par bras. Main libre sur la cuisse, dos plat." },
+    { "exerciseId": "kettlebell-developpe-militaire", "targetReps": 6, "note": "Par bras. Charge légère : c’est le plus exigeant." },
+    { "exerciseId": "pompes-mains-support-45cm", "targetReps": 10, "note": "Mains sur une chaise, un banc ou une table basse." },
+    { "exerciseId": "kettlebell-crunch-bras-tendus", "targetReps": 10, "note": "Charge légère, kettlebell bien en main." },
+    { "exerciseId": "abdominaux-lateraux", "targetReps": 10, "note": "Par côté." }
+  ]
+}

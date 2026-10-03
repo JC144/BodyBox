@@ -1,7 +1,7 @@
 // Service worker : pré-cache de toute l'application, réponses depuis le cache en priorité.
 // Toute livraison incrémente CACHE_VERSION (et APP_VERSION dans js/version.js).
 
-const CACHE_VERSION = 23;
+const CACHE_VERSION = 27;
 const CACHE_NAME = `bodybox-v${CACHE_VERSION}`;
 
 const PRECACHE = [
@@ -28,6 +28,7 @@ const PRECACHE = [
   'js/dates.js',
   'js/dom.js',
   'js/install.js',
+  'js/motion.js',
   'js/settings.js',
   'js/strings.js',
   'js/ui.js',
@@ -119,6 +120,17 @@ const PRECACHE = [
   'assets/exercises/abdominaux.svg',
   'assets/exercises/abdominaux-lateraux.svg',
   'assets/exercises/kettlebell-swing.svg',
+  'assets/exercises/kettlebell-goblet-squat.svg',
+  'assets/exercises/kettlebell-clean-press.svg',
+  'assets/exercises/kettlebell-rowing.svg',
+  'assets/exercises/kettlebell-fente-arriere.svg',
+  'assets/exercises/kettlebell-sumo-high-pull.svg',
+  'assets/exercises/kettlebell-thruster.svg',
+  'assets/exercises/kettlebell-crunch-bras-tendus.svg',
+  'assets/exercises/kettlebell-souleve-de-terre.svg',
+  'assets/exercises/kettlebell-pont-fessier.svg',
+  'assets/exercises/kettlebell-floor-press.svg',
+  'assets/exercises/kettlebell-developpe-militaire.svg',
   'assets/exercises/hand-gripper.svg',
   'assets/exercises/generique.svg',
   'assets/icons/icon-192.png',

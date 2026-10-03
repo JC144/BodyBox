@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "kettlebell-reprise-a-bas-du-corps",
+  "name": "Reprise A · Bas du corps",
+  "description": "À alterner avec la reprise B. Jambes, fessiers et dos : 3 tours, 25 à 35 min. Échauffez-vous 5 min et soufflez 1 à 2 min entre les tours.",
+  "exercises": [
+    { "exerciseId": "kettlebell-souleve-de-terre", "targetReps": 10, "note": "Le geste de base du swing : prenez votre temps." },
+    { "exerciseId": "kettlebell-goblet-squat", "targetReps": 10 },
+    { "exerciseId": "kettlebell-fente-arriere", "targetReps": 6, "note": "Par jambe, en alternant. Sans charge au début si besoin." },
+    { "exerciseId": "kettlebell-pont-fessier", "targetReps": 12 },
+    { "exerciseId": "kettlebell-swing", "targetReps": 12, "note": "Charge légère. Geste pas net ? Revenez au soulevé de terre." },
+    { "exerciseId": "abdominaux", "targetReps": 15 }
+  ]
+}

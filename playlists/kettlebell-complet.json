@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "kettlebell-complet",
+  "name": "Kettlebell · Circuit complet",
+  "description": "Corps complet avec une kettlebell : 4 tours pour 40 min environ, 3 pour 30 min. Échauffez-vous 5 min avant et soufflez 1 min entre les tours.",
+  "exercises": [
+    { "exerciseId": "kettlebell-goblet-squat", "targetReps": 12 },
+    { "exerciseId": "kettlebell-clean-press", "targetReps": 6, "note": "Par bras. Charge modérée : la technique d’abord." },
+    { "exerciseId": "kettlebell-rowing", "targetReps": 10, "note": "Par bras. Main libre sur la cuisse, dos plat." },
+    { "exerciseId": "kettlebell-swing", "targetReps": 15, "note": "Prenez la kettlebell la plus lourde si vous en avez deux." },
+    { "exerciseId": "kettlebell-fente-arriere", "targetReps": 8, "note": "Par jambe, en alternant." },
+    { "exerciseId": "kettlebell-sumo-high-pull", "targetReps": 12 },
+    { "exerciseId": "kettlebell-thruster", "targetReps": 10 },
+    { "exerciseId": "kettlebell-crunch-bras-tendus", "targetReps": 15, "note": "Charge légère, kettlebell bien en main." }
+  ]
+}

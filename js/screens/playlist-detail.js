@@ -7,6 +7,7 @@ import { getPlaylist, getActiveSession, saveActiveSession, getSessionsByPlaylist
 import { createSession, exerciseRecords, loopsRecord } from '../session.js';
 import { illustration } from '../ui.js';
 import { navigate } from '../router.js';
+import { enterFrom, leaveTo } from '../motion.js';
 
 /** « RECORD · 12 sept. 2026 », puis une ligne par valeur. */
 function recordBlock(day, lines) {
@@ -30,6 +31,20 @@ async function startSession(playlist) {
   navigate('/session');
 }
 
+/**
+ * Retour à l'accueil par le lien du titre : le circuit file vers la droite en cascade,
+ * le titre touché en dernier, puis l'accueil arrive par la gauche.
+ */
+async function goBack(e, root, parts) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  if (root.inert) return;
+  root.inert = true;
+  await leaveTo('right', parts, e.currentTarget.closest('h1'));
+  // Écran déjà quitté autrement (bouton retour du navigateur pendant la sortie) : rien à faire.
+  if (root.isConnected) navigate('/playlists');
+}
+
 export async function render(root, [id]) {
   const [playlist, active, sessions] = await Promise.all([getPlaylist(id), getActiveSession(), getSessionsByPlaylist(id)]);
 
@@ -43,44 +58,43 @@ export async function render(root, [id]) {
   const records = exerciseRecords(sessions);
   const loops = loopsRecord(sessions);
 
-  root.append(
-    h(
-      'header',
-      { class: 'screen-head' },
-      backTitle(playlist.name, T.common.home),
-      playlist.description && h('p', { class: 'lead' }, playlist.description),
-      loops && recordBlock(loops.day, [T.detail.recordLoops(loops.loops)]),
-    ),
-    h(
-      'ol',
-      { class: 'list exercise-list', role: 'list' },
-      playlist.exercises.map((item, i) => {
-        const ex = resolveExercise(item);
-        const rec = records.get(item.exerciseId);
-        return h(
-          'li',
-          { class: 'exercise-row' },
-          illustration(ex.illustration, { still: true, className: 'thumb' }),
-          h(
-            'span',
-            { class: 'exercise-row-text' },
-            h('span', { class: 'row-index' }, String(i + 1).padStart(2, '0')),
-            h('span', { class: 'row-title' }, ex.name),
-            ex.targetReps != null && h('span', { class: 'row-meta' }, T.detail.target(ex.targetReps)),
-            rec && recordBlock(rec.day, [T.detail.recordLoops(rec.bestLoops), T.detail.recordTotal(rec.bestTotal)]),
-            (ex.description || ex.muscles) &&
-              h(
-                'details',
-                { class: 'exercise-more' },
-                h('summary', { class: 'row-meta' }, T.detail.howTo),
-                ex.muscles && h('p', { class: 'exercise-muscles' }, ex.muscles),
-                ex.description && h('p', {}, ex.description),
-              ),
-          ),
-        );
-      }),
-    ),
+  const header = h(
+    'header',
+    { class: 'screen-head' },
+    backTitle(playlist.name, T.common.home),
+    playlist.description && h('p', { class: 'lead' }, playlist.description),
+    loops && recordBlock(loops.day, [T.detail.recordLoops(loops.loops)]),
   );
+  const list = h(
+    'ol',
+    { class: 'list exercise-list', role: 'list' },
+    playlist.exercises.map((item, i) => {
+      const ex = resolveExercise(item);
+      const rec = records.get(item.exerciseId);
+      return h(
+        'li',
+        { class: 'exercise-row' },
+        illustration(ex.illustration, { still: true, className: 'thumb' }),
+        h(
+          'span',
+          { class: 'exercise-row-text' },
+          h('span', { class: 'row-index' }, String(i + 1).padStart(2, '0')),
+          h('span', { class: 'row-title' }, ex.name),
+          ex.targetReps != null && h('span', { class: 'row-meta' }, T.detail.target(ex.targetReps)),
+          rec && recordBlock(rec.day, [T.detail.recordLoops(rec.bestLoops), T.detail.recordTotal(rec.bestTotal)]),
+          (ex.description || ex.muscles) &&
+            h(
+              'details',
+              { class: 'exercise-more' },
+              h('summary', { class: 'row-meta' }, T.detail.howTo),
+              ex.muscles && h('p', { class: 'exercise-muscles' }, ex.muscles),
+              ex.description && h('p', {}, ex.description),
+            ),
+        ),
+      );
+    }),
+  );
+  root.append(header, list);
 
   const actions = h('div', { class: 'screen-actions stack' });
   if (busyElsewhere) {
@@ -105,4 +119,9 @@ export async function render(root, [id]) {
     ),
   );
   root.append(actions);
+
+  // Arrivée en cascade, de haut en bas : titre, description, record, chaque exercice, puis les actions.
+  const parts = [...header.children, ...list.children, actions];
+  enterFrom('right', parts);
+  header.querySelector('a.back').addEventListener('click', (e) => goBack(e, root, parts));
 }

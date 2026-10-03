@@ -14,7 +14,8 @@ import {
   selectField, selectablePlaylists, playlistLabel, exerciseIdsOf, exerciseNamer, renderIndicators, renderProgress,
 } from '../scoring-details.js';
 import { toast, openDialog } from '../ui.js';
-import { navigate, path } from '../router.js';
+import { navigate, path, previousRoute } from '../router.js';
+import { enterFrom, leaveTo } from '../motion.js';
 
 // Scoring détaillé : déplié ou non, et playlist choisie ('' = toutes), conservés le temps de l'utilisation.
 const detailed = { open: false, playlistId: '' };
@@ -28,6 +29,30 @@ function showIosInstallHelp() {
     note: T.install.iosData,
     actions: [{ label: T.install.ok, value: 'ok', kind: 'primary' }],
   });
+}
+
+/**
+ * Ouverture d'un circuit : l'accueil file vers la gauche en cascade, le circuit touché en dernier,
+ * puis le détail prend la place. Les ouvertures dans un nouvel onglet gardent le comportement du lien.
+ */
+async function openPlaylist(e, root, id) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  if (root.inert) return;
+  root.inert = true;
+  await leaveTo('left', parts(root), e.currentTarget.closest('li'));
+  // Écran déjà quitté autrement (retour arrière pendant la sortie) : rien à ouvrir.
+  if (root.isConnected) navigate(path('playlists', id));
+}
+
+/** Éléments de l'accueil qui partent ou arrivent un à un : chaque bloc, et chaque circuit de la liste. */
+function parts(root) {
+  return [...root.children].flatMap((el) => (el.matches('.list') ? [...el.children] : [el]));
+}
+
+/** Retour depuis le détail d'un circuit (lien retour ou bouton du navigateur) : l'accueil arrive par la gauche. */
+function enterBack(root) {
+  if (previousRoute()?.name === 'playlist') enterFrom('left', parts(root));
 }
 
 /** Bouton Installer, en haut à droite, visible tant que l'application peut être installée. */
@@ -113,6 +138,7 @@ export async function render(root) {
         ),
       ),
     );
+    enterBack(root);
     return install.stop;
   }
 
@@ -134,7 +160,7 @@ export async function render(root) {
           {},
           h(
             'a',
-            { href: `#${path('playlists', p.id)}`, class: 'row' },
+            { href: `#${path('playlists', p.id)}`, class: 'row', onclick: (e) => openPlaylist(e, root, p.id) },
             h('span', { class: 'row-title' }, p.name),
             h(
               'span',
@@ -157,6 +183,7 @@ export async function render(root) {
     playlistName: (x) => names.get(x.playlistId) ?? x.playlistName,
   });
   renderDetailedScoring(gridSection, playlists, sessions, today);
+  enterBack(root);
   return install.stop;
 }
 

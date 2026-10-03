@@ -96,6 +96,12 @@ a.row:active .row-text {
 
 /* ---------- Détail d'une playlist ---------- */
 
+/* Les éléments arrivent de la droite : pendant l'animation, ils ne doivent pas
+   déborder et rendre l'écran défilable en largeur. */
+body[data-route="playlist"] .main {
+  overflow-x: clip;
+}
+
 .exercise-row {
   display: flex;
   align-items: flex-start;

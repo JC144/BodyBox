@@ -85,7 +85,7 @@ De haut en bas :
 - Le bouton **Réglages** (engrenage) à gauche du titre « BodyBox ».
 - Tout à droite du titre, tant que l'application n'est pas installée, un bouton **Installer**. Sur Android et les navigateurs qui le permettent, il ouvre l'invite d'installation du navigateur ; sur iPhone et iPad, il ouvre une aide pas à pas (menu Partager, « Sur l'écran d'accueil », « Ajouter ») qui rappelle que l'application installée ne reprend pas les données du navigateur et comment les transférer par export puis restauration. Le bouton disparaît dès que l'application est installée, et n'apparaît pas quand elle est ouverte depuis l'écran d'accueil ni sur un navigateur qui ne permet pas l'installation.
 - Le titre de section « Circuits », avec tout à droite un bouton **+** qui ouvre l'onglet **Circuits** des Réglages.
-- La liste des circuits, dans l'ordre choisi dans les Réglages : nom, nombre d'exercices, date de la dernière séance. Un appui sur un circuit ouvre son détail.
+- La liste des circuits, dans l'ordre choisi dans les Réglages : nom, nombre d'exercices, date de la dernière séance. Un appui sur un circuit ouvre son détail : l'accueil file vers la gauche en s'effaçant, élément par élément de haut en bas, le circuit touché partant en dernier.
 - La grille de scoring, tous circuits confondus (voir [7.1](#71-grille-de-complétion)). Un appui sur une case déroule le détail du jour sous la grille, avec le nom du circuit de chaque séance ; un second appui sur la même case le replie.
 - Une pointe de flèche vers le bas, large, qui déplie sur place le **scoring détaillé**, sans changer d'écran ; la flèche passe vers le haut par un fondu enchaîné (la flèche sortante s'efface, puis l'autre apparaît) et un second appui replie. Le scoring détaillé comprend un sélecteur de circuit (**Tous les circuits** par défaut, puis chaque circuit dans l'ordre choisi dans les Réglages ; les circuits supprimés dont l'historique est conservé viennent en dernier, avec la mention « supprimé »), les indicateurs, les records et la courbe de progression (voir [7.2](#72-indicateurs) et [7.3](#73-courbe-de-progression)). Avec « Tous les circuits », la courbe propose les exercices de tous les circuits. L'état déplié et le circuit choisi sont conservés tant que l'application reste ouverte.
 - Au premier lancement, les trois circuits par niveau sont déjà présents (voir [4.6](#46-circuits-par-niveau)).
@@ -104,6 +104,8 @@ De haut en bas :
 ### 2.4 Détail d'un circuit
 
 - Affiche le nom, la description et la liste ordonnée des exercices avec, pour chacun, une vignette fixe de l'illustration, le nom et l'objectif de répétitions s'il est défini.
+- À l'ouverture, les éléments arrivent de la droite les uns après les autres, de haut en bas (titre, description, record, chaque exercice, puis le bouton), avec un léger décalage entre chacun, à la façon des écrans Metro.
+- Au retour par le lien du titre, c'est l'inverse : le circuit file vers la droite en s'effaçant, élément par élément de haut en bas, le titre partant en dernier, puis les éléments de l'accueil arrivent de la gauche, en cascade de haut en bas. Le retour par le bouton du navigateur fait arriver l'accueil de la même façon, sans la sortie.
 - Sous chaque exercice du catalogue, un volet **Exécution**, replié par défaut, donne les muscles travaillés et la description de l'exercice (voir [6.3](#63-modèle-dun-exercice)).
 - Records, affichés seulement s'il existe un historique sur ce circuit. Chaque record commence par « **RECORD** · date » (date du dernier record battu), suivi d'une valeur par ligne :
   - sous la description : le plus grand nombre de tours complets sur une séance ;
@@ -144,7 +146,9 @@ Affiché sur l'accueil (voir [2.2](#22-accueil)) ; ses règles sont décrites en
 
 ### 2.8 Réglages
 
-Deux onglets, **Général** (par défaut) et **Circuits**. L'onglet affiché est reflété dans l'adresse.
+Deux onglets, **Général** (par défaut) et **Circuits**. L'onglet affiché est reflété dans l'adresse. Le changement d'onglet est animé de la même façon au clic, au clavier et au glissé : l'en-tête quitté rétrécit et l'en-tête choisi grossit, la page courante s'efface du côté opposé à l'onglet choisi, puis la nouvelle page arrive de ce côté.
+
+Sur écran tactile, un glissé horizontal du doigt passe à l'onglet voisin : vers la gauche pour l'onglet suivant, vers la droite pour le précédent, sans boucler. Tant que le doigt touche l'écran, la page courante s'efface en suivant le doigt, l'en-tête de l'onglet courant rétrécit et celui de l'onglet visé grossit. Au lâcher, le changement d'onglet se termine si le geste est assez marqué (le quart de la largeur de l'écran, ou un geste vif) ; sinon, tout revient en place. Au début du geste, le premier mouvement net décide : vertical, la page défile normalement ; horizontal, le geste change d'onglet et la page ne défile pas. À la souris, le glissé ne change pas d'onglet.
 
 **Général**
 
@@ -481,7 +485,7 @@ Dans un circuit, `name` remplace le nom affiché et `note` remplace la consigne 
 
 ### 6.4 Liste des exercices
 
-Le catalogue compte 81 exercices. Le code renvoie au livre d'exercices dont ils sont tirés ; les exercices sans code sont ceux d'origine qui n'y figurent pas.
+Le catalogue compte 92 exercices. Le code renvoie au livre d'exercices dont ils sont tirés ; les exercices sans code n'y figurent pas : ce sont ceux d'origine et les exercices à la kettlebell.
 
 | Code | Identifiant | Nom | Muscles |
 |---|---|---|---|
@@ -565,6 +569,17 @@ Le catalogue compte 81 exercices. Le code renvoie au livre d'exercices dont ils 
 | — | `abdominaux` | Crunch | Grand droit de l’abdomen |
 | — | `abdominaux-lateraux` | Crunch croisé | Obliques, grand droit de l’abdomen |
 | — | `kettlebell-swing` | Kettlebell swing | Fessiers, ischio-jambiers, lombaires, sangle abdominale |
+| — | `kettlebell-goblet-squat` | Goblet squat | Quadriceps, fessiers, adducteurs, sangle abdominale |
+| — | `kettlebell-clean-press` | Clean & press | Épaules, triceps, fessiers, ischio-jambiers, sangle abdominale |
+| — | `kettlebell-rowing` | Rowing penché à un bras | Grand dorsal, milieu du dos, biceps, arrière des épaules |
+| — | `kettlebell-fente-arriere` | Fente arrière goblet | Quadriceps, fessiers, ischio-jambiers |
+| — | `kettlebell-sumo-high-pull` | Sumo deadlift high pull | Fessiers, ischio-jambiers, trapèzes, épaules |
+| — | `kettlebell-thruster` | Thruster goblet | Quadriceps, fessiers, épaules, triceps |
+| — | `kettlebell-crunch-bras-tendus` | Crunch kettlebell bras tendus | Grand droit de l’abdomen, obliques |
+| — | `kettlebell-souleve-de-terre` | Soulevé de terre | Fessiers, ischio-jambiers, lombaires, avant-bras |
+| — | `kettlebell-pont-fessier` | Pont fessier | Fessiers, ischio-jambiers, lombaires |
+| — | `kettlebell-floor-press` | Développé au sol | Pectoraux, triceps, avant des épaules |
+| — | `kettlebell-developpe-militaire` | Développé militaire | Épaules, triceps, haut du dos, sangle abdominale |
 | — | `hand-gripper` | Hand gripper | Fléchisseurs des doigts, avant-bras |
 
 ### 6.5 Fiches d'animation
@@ -810,7 +825,7 @@ Une seule famille : la police système (`system-ui, -apple-system, "Segoe UI", R
 | Flèche de dépliage | Pointe de flèche au trait, étirée sur 80 % de la largeur, sans cadre ; vers le haut une fois dépliée, le changement de sens se faisant par fondu enchaîné |
 | Fenêtres de confirmation | Aplat `--bg` plein écran ou ancré en bas, encadré d'un filet `--fg` |
 
-Les transitions d'interface sont brèves (150 ms au plus) et supprimées si `prefers-reduced-motion` est actif.
+Les transitions d'interface sont brèves (150 ms au plus) et supprimées si `prefers-reduced-motion` est actif. Seules exceptions : les arrivées en cascade du détail d'un circuit et de l'accueil au retour (voir [2.4](#24-détail-dun-circuit)), 350 ms par élément avec une décélération très marquée, décalées de 45 ms ; elles sont elles aussi supprimées en mouvement réduit.
 
 ### 8.5 Grille de scoring
 
